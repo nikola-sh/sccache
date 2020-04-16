@@ -109,7 +109,7 @@ where
 {
     let write = write_temp_file(pool, "test.c".as_ref(), b"#include \"test.h\"\n".to_vec());
 
-    let exe = exe.to_os_string();
+    let exe = "C:\\Program Files\\LLVM\\bin\\clang-cl.exe";
     let mut creator = creator.clone();
     let pool = pool.clone();
     let write2 = write.and_then(move |(tempdir, input)| {
@@ -307,6 +307,7 @@ pub fn parse_arguments(
                     Argument::Raw(ref val) => {
                         if input_arg.is_some() {
                             // Can't cache compilations with multiple inputs.
+                            debug!("multiple input files: {} {}", val.to_str().unwrap_or("<conv-err>"), input_arg.unwrap_or(OsString::new()).to_str().unwrap_or("<conv-err>"));
                             cannot_cache!("multiple input files");
                         }
                         input_arg = Some(val.clone());
@@ -483,12 +484,14 @@ pub fn preprocess<T>(
 where
     T: CommandCreatorSync,
 {
-    let mut cmd = creator.clone().new_command_sync(executable);
+    let filtered_common_args : Vec<&OsString> = parsed_args.common_args.iter().filter(|v| **v != OsString::from("-d2notypeopt") && **v != OsString::from("-GL") && **v != OsString::from("-arch:IA32")).collect();
+
+    let mut cmd = creator.clone().new_command_sync("C:\\Program Files\\LLVM\\bin\\clang-cl.exe");
     cmd.arg("-E")
         .arg(&parsed_args.input)
         .arg("-nologo")
         .args(&parsed_args.preprocessor_args)
-        .args(&parsed_args.common_args)
+        .args(&filtered_common_args)
         .env_clear()
         .envs(env_vars.iter().map(|&(ref k, ref v)| (k, v)))
         .current_dir(&cwd);
