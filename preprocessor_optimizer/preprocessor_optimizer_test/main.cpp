@@ -24,12 +24,30 @@ int wmain(int argc, wchar_t* argv)
         return 1;
     }
    
+#if 0 
     HANDLE notepadProcess = runCompilerProcess(L"C:\\Windows\\Notepad.exe", L"C:\\Windows\\Notepad.exe M:\\3333.txt");
     if (!notepadProcess)
     {
         std::cerr << "failed to start Notepad process\n";
         return 1;
     }
+#else
+    std::wstring cmdlineBuf(L"C:\\Windows\\Notepad.exe M:\\3333.txt");
+
+    STARTUPINFOW si = { sizeof(si) };
+    PROCESS_INFORMATION pi;
+
+    BOOL ok = CreateProcessW(L"C:\\Windows\\Notepad.exe", &cmdlineBuf[0], nullptr, nullptr, FALSE, 0, nullptr, nullptr, &si, &pi);
+    if (!ok)
+    {
+        std::cerr << "failed to start Notepad process\n";
+        return 1;
+    }
+
+    ::CloseHandle(pi.hThread);
+
+    HANDLE notepadProcess = pi.hProcess;
+#endif
 
     WaitForSingleObject(notepadProcess, INFINITE);
     

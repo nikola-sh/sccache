@@ -86,16 +86,16 @@
     <ClCompile>
       <WarningLevel>Level3</WarningLevel>
       <SDLCheck>true</SDLCheck>
-      <PreprocessorDefinitions>WIN32;_DEBUG;PREPROCESSOROPTIMIZER_EXPORTS;_WINDOWS;_USRDLL;%(PreprocessorDefinitions);_WIN32_WINNT=0x0601</PreprocessorDefinitions>
+      <PreprocessorDefinitions>_CRT_SECURE_NO_WARNINGS;WIN32;_DEBUG;PREPROCESSOROPTIMIZER_EXPORTS;_WINDOWS;_USRDLL;%(PreprocessorDefinitions);_WIN32_WINNT=0x0601</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
       <RuntimeLibrary>MultiThreadedDebug</RuntimeLibrary>
-      <AdditionalIncludeDirectories>F:\Projects\github.com\nikola-sh\sccache\src\preprocessor_optimizer\Detours-4.0.1\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>F:\libs\boost_1_72_0;..\Detours-4.0.1\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <SubSystem>Windows</SubSystem>
       <GenerateDebugInformation>true</GenerateDebugInformation>
       <EnableUAC>false</EnableUAC>
-      <AdditionalLibraryDirectories>F:\Projects\github.com\nikola-sh\sccache\src\preprocessor_optimizer\Detours-4.0.1\lib.X64;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <AdditionalLibraryDirectories>F:\libs\boost_1_72_0\stage\lib;..\Detours-4.0.1\lib.X64;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
       <ModuleDefinitionFile>
       </ModuleDefinitionFile>
       <AdditionalDependencies>kernel32.lib;%(AdditionalDependencies);detours.lib</AdditionalDependencies>
@@ -105,16 +105,16 @@
     <ClCompile>
       <WarningLevel>Level3</WarningLevel>
       <SDLCheck>true</SDLCheck>
-      <PreprocessorDefinitions>_DEBUG;PREPROCESSOROPTIMIZER_EXPORTS;_WINDOWS;_USRDLL;%(PreprocessorDefinitions);_WIN32_WINNT=0x0601</PreprocessorDefinitions>
+      <PreprocessorDefinitions>_CRT_SECURE_NO_WARNINGS;_DEBUG;PREPROCESSOROPTIMIZER_EXPORTS;_WINDOWS;_USRDLL;%(PreprocessorDefinitions);_WIN32_WINNT=0x0601</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
       <RuntimeLibrary>MultiThreadedDebug</RuntimeLibrary>
-      <AdditionalIncludeDirectories>F:\Projects\github.com\nikola-sh\sccache\src\preprocessor_optimizer\Detours-4.0.1\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>F:\libs\boost_1_72_0;..\Detours-4.0.1\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <SubSystem>Windows</SubSystem>
       <GenerateDebugInformation>true</GenerateDebugInformation>
       <EnableUAC>false</EnableUAC>
-      <AdditionalLibraryDirectories>F:\Projects\github.com\nikola-sh\sccache\src\preprocessor_optimizer\Detours-4.0.1\lib.X64;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <AdditionalLibraryDirectories>F:\libs\boost_1_72_0\stage\lib;..\Detours-4.0.1\lib.X64;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
       <ModuleDefinitionFile>
       </ModuleDefinitionFile>
       <AdditionalDependencies>kernel32.lib;%(AdditionalDependencies);detours.lib</AdditionalDependencies>
@@ -126,10 +126,10 @@
       <FunctionLevelLinking>true</FunctionLevelLinking>
       <IntrinsicFunctions>true</IntrinsicFunctions>
       <SDLCheck>true</SDLCheck>
-      <PreprocessorDefinitions>WIN32;NDEBUG;PREPROCESSOROPTIMIZER_EXPORTS;_WINDOWS;_USRDLL;%(PreprocessorDefinitions);_WIN32_WINNT=0x0601</PreprocessorDefinitions>
+      <PreprocessorDefinitions>_CRT_SECURE_NO_WARNINGS;WIN32;NDEBUG;PREPROCESSOROPTIMIZER_EXPORTS;_WINDOWS;_USRDLL;%(PreprocessorDefinitions);_WIN32_WINNT=0x0601</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
       <RuntimeLibrary>MultiThreaded</RuntimeLibrary>
-      <AdditionalIncludeDirectories>F:\Projects\github.com\nikola-sh\sccache\src\preprocessor_optimizer\Detours-4.0.1\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>F:\libs\boost_1_72_0;..\Detours-4.0.1\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <SubSystem>Windows</SubSystem>
@@ -137,7 +137,7 @@
       <OptimizeReferences>true</OptimizeReferences>
       <GenerateDebugInformation>true</GenerateDebugInformation>
       <EnableUAC>false</EnableUAC>
-      <AdditionalLibraryDirectories>F:\Projects\github.com\nikola-sh\sccache\src\preprocessor_optimizer\Detours-4.0.1\lib.X64;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <AdditionalLibraryDirectories>F:\libs\boost_1_72_0\stage\lib;..\Detours-4.0.1\lib.X64;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
       <ModuleDefinitionFile>
       </ModuleDefinitionFile>
       <AdditionalDependencies>kernel32.lib;%(AdditionalDependencies);detours.lib</AdditionalDependencies>
@@ -149,10 +149,10 @@
       <FunctionLevelLinking>true</FunctionLevelLinking>
       <IntrinsicFunctions>true</IntrinsicFunctions>
       <SDLCheck>true</SDLCheck>
-      <PreprocessorDefinitions>NDEBUG;PREPROCESSOROPTIMIZER_EXPORTS;_WINDOWS;_USRDLL;%(PreprocessorDefinitions);_WIN32_WINNT=0x0601</PreprocessorDefinitions>
+      <PreprocessorDefinitions>_CRT_SECURE_NO_WARNINGS;NDEBUG;PREPROCESSOROPTIMIZER_EXPORTS;_WINDOWS;_USRDLL;%(PreprocessorDefinitions);_WIN32_WINNT=0x0601</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
       <RuntimeLibrary>MultiThreaded</RuntimeLibrary>
-      <AdditionalIncludeDirectories>F:\Projects\github.com\nikola-sh\sccache\src\preprocessor_optimizer\Detours-4.0.1\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>F:\libs\boost_1_72_0;..\Detours-4.0.1\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <SubSystem>Windows</SubSystem>
@@ -160,7 +160,7 @@
       <OptimizeReferences>true</OptimizeReferences>
       <GenerateDebugInformation>true</GenerateDebugInformation>
       <EnableUAC>false</EnableUAC>
-      <AdditionalLibraryDirectories>F:\Projects\github.com\nikola-sh\sccache\src\preprocessor_optimizer\Detours-4.0.1\lib.X64;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <AdditionalLibraryDirectories>F:\libs\boost_1_72_0\stage\lib;..\Detours-4.0.1\lib.X64;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
       <ModuleDefinitionFile>
       </ModuleDefinitionFile>
       <AdditionalDependencies>kernel32.lib;%(AdditionalDependencies);detours.lib</AdditionalDependencies>

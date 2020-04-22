@@ -61,6 +61,7 @@ use tokio_serde_bincode::{ReadBincode, WriteBincode};
 use tokio_tcp::TcpListener;
 use tokio_timer::{Delay, Timeout};
 use tower::Service;
+use std::os::windows::prelude::*;
 
 use crate::errors::*;
 
@@ -397,7 +398,19 @@ impl DistClientContainer {
 /// Spins an event loop handling client connections until a client
 /// requests a shutdown.
 pub fn start_server(config: &Config, port: u16) -> Result<()> {
+    use winapi::um::libloaderapi::{LoadLibraryW};
+    
     info!("start_server: port: {}", port);
+    
+    let mut preprocessor_optimizer_dll_path = OsStr::new(r"F:\Projects\github.com\nikola-sh\sccache\preprocessor_optimizer\x64\Debug\preprocessor_optimizer.dll")
+        .encode_wide()
+        .chain(Some(0u16))
+        .collect::<Vec<u16>>();
+    
+    unsafe {
+        LoadLibraryW(preprocessor_optimizer_dll_path.as_mut_ptr());
+    }
+    
     let client = unsafe { Client::new() };
     let runtime = Runtime::new()?;
     let pool = CpuPool::new(std::cmp::max(20, 2 * num_cpus::get()));

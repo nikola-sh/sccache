@@ -1,7 +1,10 @@
 #pragma once
 
+#include <windows.h>
+
 #include <mutex>
 #include <fstream>
+#include <sstream>
 #include <string>
 
 class LogFile
@@ -9,17 +12,20 @@ class LogFile
 public:
     LogFile()
     {
-        m_log.open(L"M:\\log.txt", std::ios::binary);
-        m_log.write("\xff\xfe", 2);
+        /*std::wostringstream logName;
+        logName << L"M:\\pp_optimizer." << ::GetCurrentProcessId() << L".log";
+
+        m_log.open(logName.str().c_str(), std::ios::binary);
+        m_log.write("\xff\xfe", 2);*/
     }
 
     void Write(wchar_t const* msg)
     {
-        std::lock_guard<std::mutex> lock(m_mutex);
+        /*std::lock_guard<std::mutex> lock(m_mutex);
 
         m_log.write((char*)msg, wcslen(msg) * sizeof(wchar_t));
         m_log.write((char*)L"\n", 2);
-        m_log.flush();
+        m_log.flush();*/
     }
 
     void Write(std::wstring const& str)

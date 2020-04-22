@@ -8,9 +8,16 @@
 
 std::string GetInjecteeDllPath()
 {
-    char dllPath[4096];
+    HMODULE thisModule;
+    if (!GetModuleHandleExW(
+        GET_MODULE_HANDLE_EX_FLAG_FROM_ADDRESS | GET_MODULE_HANDLE_EX_FLAG_UNCHANGED_REFCOUNT,
+        (LPCWSTR)&GetInjecteeDllPath, &thisModule))
+    {
+        throw std::runtime_error("failed to get current module handle");
+    }
 
-    DWORD n = GetModuleFileNameA(nullptr, dllPath, _countof(dllPath));
+    char dllPath[4096];
+    DWORD n = GetModuleFileNameA(thisModule, dllPath, _countof(dllPath));
     if (n >= _countof(dllPath))
     {
         throw std::runtime_error("failed to get DLL path");

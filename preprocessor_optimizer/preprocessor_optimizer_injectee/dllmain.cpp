@@ -3,9 +3,10 @@
 
 #include "preprocessor_optimizer_injectee.h"
 #include "log_file.h"
+#include "../common/shared_cache.h"
 
 std::unique_ptr<LogFile> g_logFile;
-
+std::unique_ptr<SharedCache> g_notFoundFiles;
 CreateFileWType Real_CreateFileW = CreateFileW;
 
 __declspec(dllexport) void Stub()
@@ -24,6 +25,8 @@ BOOL WINAPI DllMain(HINSTANCE hinst, DWORD dwReason, LPVOID reserved)
     {
         g_logFile.reset(new LogFile);
         g_logFile->Write(L"a");
+
+        //g_notFoundFiles.reset(new SharedCache);
 
         DetourRestoreAfterWith();
 
