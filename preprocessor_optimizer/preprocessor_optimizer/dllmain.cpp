@@ -41,32 +41,36 @@ BOOL __stdcall Mine_CreateProcessW (
 
 BOOL WINAPI DllMain(HINSTANCE hinst, DWORD dwReason, LPVOID reserved)
 {
-    return TRUE;
-
-    /*if (DetourIsHelperProcess())
+    try
     {
+        if (DetourIsHelperProcess())
+        {
+            return TRUE;
+        }
+
+        if (dwReason == DLL_PROCESS_ATTACH)
+        {
+            g_sharedCache.reset(new SharedCache(true));
+
+            DetourTransactionBegin();
+            DetourUpdateThread(GetCurrentThread());
+            DetourAttach(&(PVOID&)Real_CeateProcessW, Mine_CreateProcessW);
+            DetourTransactionCommit();
+        }
+
+        else if (dwReason == DLL_PROCESS_DETACH)
+        {
+            DetourTransactionBegin();
+            DetourUpdateThread(GetCurrentThread());
+            DetourDetach(&(PVOID&)Real_CeateProcessW, Mine_CreateProcessW);
+            DetourTransactionCommit();
+        }
+
         return TRUE;
-    }*/
-
-    if (dwReason == DLL_PROCESS_ATTACH)
-    {
-        //DetourRestoreAfterWith();
-
-        g_sharedCache.reset(new SharedCache(true));
-
-        DetourTransactionBegin();
-        DetourUpdateThread(GetCurrentThread());
-        DetourAttach(&(PVOID&)Real_CeateProcessW, Mine_CreateProcessW);
-        DetourTransactionCommit();
     }
-
-    else if (dwReason == DLL_PROCESS_DETACH)
+    catch (...)
     {
-        DetourTransactionBegin();
-        DetourUpdateThread(GetCurrentThread());
-        DetourDetach(&(PVOID&)Real_CeateProcessW, Mine_CreateProcessW);
-        DetourTransactionCommit();
+        TerminateProcess(GetCurrentProcess(), 666);
+        return false;
     }
-
-    return TRUE;
 }

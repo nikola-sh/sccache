@@ -19,3 +19,14 @@ HANDLE __stdcall Mine_CreateFileW(
     DWORD                 dwCreationDisposition,
     DWORD                 dwFlagsAndAttributes,
     HANDLE                hTemplateFile);
+
+
+typedef DWORD (__stdcall * GetFileAttributesWType)(
+    LPCWSTR lpFileName
+);
+
+extern GetFileAttributesWType Real_GetFileAttributesW;
+
+DWORD __stdcall Mine_GetFileAttributesW(
+    LPCWSTR lpFileName
+);

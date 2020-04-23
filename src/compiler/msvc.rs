@@ -109,6 +109,7 @@ where
 {
     let write = write_temp_file(pool, "test.c".as_ref(), b"#include \"test.h\"\n".to_vec());
 
+    //let exe = exe.to_os_string();
     let exe = "C:\\Program Files\\LLVM\\bin\\clang-cl.exe";
     let mut creator = creator.clone();
     let pool = pool.clone();
@@ -487,6 +488,7 @@ where
     let filtered_common_args : Vec<&OsString> = parsed_args.common_args.iter().filter(|v| **v != OsString::from("-d2notypeopt") && **v != OsString::from("-GL") && **v != OsString::from("-arch:IA32")).collect();
 
     let mut cmd = creator.clone().new_command_sync("C:\\Program Files\\LLVM\\bin\\clang-cl.exe");
+    //let mut cmd = creator.clone().new_command_sync(executable);
     cmd.arg("-E")
         .arg(&parsed_args.input)
         .arg("-nologo")

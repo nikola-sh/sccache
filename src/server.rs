@@ -402,7 +402,7 @@ pub fn start_server(config: &Config, port: u16) -> Result<()> {
     
     info!("start_server: port: {}", port);
     
-    let mut preprocessor_optimizer_dll_path = OsStr::new(r"F:\Projects\github.com\nikola-sh\sccache\preprocessor_optimizer\x64\Debug\preprocessor_optimizer.dll")
+    let mut preprocessor_optimizer_dll_path = OsStr::new(r"F:\Projects\github.com\nikola-sh\sccache\preprocessor_optimizer\x64\Release\preprocessor_optimizer.dll")
         .encode_wide()
         .chain(Some(0u16))
         .collect::<Vec<u16>>();

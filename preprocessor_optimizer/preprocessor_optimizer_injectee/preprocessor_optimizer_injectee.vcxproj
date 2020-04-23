@@ -163,6 +163,7 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClInclude Include="..\common\shared_cache.h" />
     <ClInclude Include="log_file.h" />
     <ClInclude Include="preprocessor_optimizer_injectee.h" />
   </ItemGroup>

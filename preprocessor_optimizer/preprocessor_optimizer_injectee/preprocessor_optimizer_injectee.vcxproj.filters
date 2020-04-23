@@ -21,6 +21,9 @@
     <ClInclude Include="log_file.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="..\common\shared_cache.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="preprocessor_optimizer_injectee.cpp">

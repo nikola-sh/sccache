@@ -7,30 +7,40 @@
 #include <sstream>
 #include <string>
 
+// #define ENABLE_LOGGING
+
 class LogFile
 {
 public:
     LogFile()
     {
-        /*std::wostringstream logName;
+#ifdef ENABLE_LOGGING
+        std::wostringstream logName;
         logName << L"M:\\pp_optimizer." << ::GetCurrentProcessId() << L".log";
 
         m_log.open(logName.str().c_str(), std::ios::binary);
-        m_log.write("\xff\xfe", 2);*/
+        m_log.write("\xff\xfe", 2);
+#endif
     }
 
-    void Write(wchar_t const* msg)
+    void Write(wchar_t const* token1, wchar_t const* token2 = nullptr, wchar_t const* token3 = nullptr)
     {
-        /*std::lock_guard<std::mutex> lock(m_mutex);
+#ifdef ENABLE_LOGGING
+        std::lock_guard<std::mutex> lock(m_mutex);
 
-        m_log.write((char*)msg, wcslen(msg) * sizeof(wchar_t));
-        m_log.write((char*)L"\n", 2);
-        m_log.flush();*/
+        WriteToken(token1);
+        WriteToken(token2);
+        WriteToken(token3);
+        
+        m_log.flush();
+#endif
     }
 
-    void Write(std::wstring const& str)
+private:
+    void WriteToken(wchar_t const* token)
     {
-        return Write(str.c_str());
+        if (token)
+            m_log.write((char*)token, wcslen(token) * sizeof(wchar_t));
     }
 
 private:
