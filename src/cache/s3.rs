@@ -22,6 +22,8 @@ use futures::future::Future;
 use std::io;
 use std::rc::Rc;
 use std::time::{Duration, Instant};
+use std::env::var_os;
+use std::path::{Path, PathBuf};
 
 use crate::errors::*;
 
@@ -39,13 +41,19 @@ impl S3Cache {
         let user_dirs = UserDirs::new().ok_or("Couldn't get user directories")?;
         let home = user_dirs.home_dir();
 
-        let profile_providers = vec![
-            ProfileProvider::with_configuration(home.join(".aws").join("credentials"), "default"),
-            //TODO: this is hacky, this is where our mac builders store their
-            // credentials. We should either match what boto does more directly
-            // or make those builders put their credentials in ~/.aws/credentials
-            ProfileProvider::with_configuration(home.join(".boto"), "Credentials"),
-        ];
+        let profile_providers = match var_os("SCCACHE_AWS_CREDENTIALS_FILE") {
+            Some(path) => vec![
+                ProfileProvider::with_configuration(PathBuf::from(path), "default")
+            ],
+            None => vec![
+                ProfileProvider::with_configuration(home.join(".aws").join("credentials"), "default"),
+                //TODO: this is hacky, this is where our mac builders store their
+                // credentials. We should either match what boto does more directly
+                // or make those builders put their credentials in ~/.aws/credentials
+                ProfileProvider::with_configuration(home.join(".boto"), "Credentials"),
+            ],
+        };
+
         let provider =
             AutoRefreshingProvider::new(ChainProvider::with_profile_providers(profile_providers));
         let ssl_mode = match use_ssl {
